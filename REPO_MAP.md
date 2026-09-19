@@ -1,44 +1,34 @@
 # Aura Repository Map
 
-## Repositories
+## Canonical paths
 
-| Path                           | Git root    | Purpose                                                                         |
-| ------------------------------ | ----------- | ------------------------------------------------------------------------------- |
-| `D:\PROJECTS\AURA`             | parent repo | Aura hardware, firmware, backend, Android app, deployment, top-level agent docs |
-| `D:\PROJECTS\AURA\website\1.2` | nested repo | Current Aura website and agent harness experiments                              |
+| Area | Path | Ownership |
+|---|---|---|
+| Backend | `backend/` | FastAPI application, AI/data workflows |
+| Firmware | `firmware/` | Pendant firmware |
+| Android app | `app/` | Companion Android application |
+| Hardware | `hardware/` | Physical design and build material |
+| Website | `website/` | Production static website |
+| Agent guidance | `AGENTS.md`, `.agents/skills/`, `.codex/`, `.claude/`, `.opencode/` | Agent behavior and repeatable procedures |
+| Durable knowledge | `docs/` | Workflow, ADRs, knowledge indexes, task artifacts |
 
-Always confirm the git root before committing:
+Confirm the repository root before any Git operation:
 
-```powershell
+```bash
 git rev-parse --show-toplevel
 ```
 
-## Product Areas
+## Website truth
 
-| Area                   | Path                                                                             | Current role                                        |
-| ---------------------- | -------------------------------------------------------------------------------- | --------------------------------------------------- |
-| Website                | `website/1.2/website/`                                                           | Production static website served by GitHub Pages    |
-| Website design sources | `website/1.2/BRAND_BRIEF.md`, `website/1.2/DESIGN.md`, `website/1.2/PRODUCT.md`  | Design and product contract for website agents      |
-| Website harness        | `website/1.2/agent_harness.py`, `website/1.2/workflows/`, `website/1.2/prompts/` | Agentic Architect -> Developer -> Reviewer workflow |
-| Firmware               | `firmware/`                                                                      | Pendant firmware                                    |
-| Backend                | `backend/`                                                                       | AI backend                                          |
-| Android app            | `app/`                                                                           | Companion app                                       |
-| Hardware               | `hardware/`                                                                      | Case and physical build notes                       |
-| Agent docs             | `AGENTS.md`, `docs/agentic-sdlc.md`, `docs/adr/`                                 | How agents should navigate and change the repo      |
+The production website source is `website/`.
 
-## Website Truth
-
-The live website source is:
+GitHub Pages deploys:
 
 ```text
-D:\PROJECTS\AURA\website\1.2\website
+./website
 ```
 
-GitHub Pages deploys this directory from:
-
-```text
-.github/workflows/deploy-website.yml
-```
+from `.github/workflows/deploy-website.yml`.
 
 Current page contract:
 
@@ -47,13 +37,18 @@ Current page contract:
 - `docs.html`
 - `404.html`
 
-Do not treat `website/1.1/` or deleted files under parent `docs/` as active website source.
+Do not treat `website/1.1/` or the former nested `website/1.2/` layout as active source unless a maintainer changes this contract.
 
-## Documentation Truth
+## Documentation graph
 
-- Top-level project context: `CONTEXT.md`
-- Website/harness context: `website/1.2/CONTEXT.md`
-- Agentic workflow: `docs/agentic-sdlc.md`
-- Architecture decisions: `docs/adr/`
+- [Agent Guide](AGENTS.md)
+- [Project Context](CONTEXT.md)
+- [Markdown Engineering](docs/markdown-engineering.md)
+- [Knowledge Index](docs/knowledge/INDEX.md)
+- [Agentic SDLC](docs/agentic-sdlc.md)
+- [Portable Workflow](docs/WORKFLOW.md)
+- [Architecture Decisions](docs/adr/)
+- [Task Work](docs/work/)
+- [Repository Skills](.agents/skills/)
 
-Keep `CONTEXT.md` glossary-like. Put workflows in docs. Put hard-to-reverse decisions in ADRs.
+Use these as navigation roots. Do not make a second index that restates the same map.
