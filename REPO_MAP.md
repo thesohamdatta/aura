@@ -17,7 +17,7 @@ git rev-parse --show-toplevel
 
 | Area                   | Path                                                                             | Current role                                        |
 | ---------------------- | -------------------------------------------------------------------------------- | --------------------------------------------------- |
-| Website                | `website/1.2/website/`                                                           | Production static website served by GitHub Pages    |
+| Website                | `website/`                                                           | Production static website served by GitHub Pages    |
 | Website design sources | `website/1.2/BRAND_BRIEF.md`, `website/1.2/DESIGN.md`, `website/1.2/PRODUCT.md`  | Design and product contract for website agents      |
 | Website harness        | `website/1.2/agent_harness.py`, `website/1.2/workflows/`, `website/1.2/prompts/` | Agentic Architect -> Developer -> Reviewer workflow |
 | Firmware               | `firmware/`                                                                      | Pendant firmware                                    |
@@ -28,11 +28,7 @@ git rev-parse --show-toplevel
 
 ## Website Truth
 
-The live website source is:
-
-```text
-D:\PROJECTS\AURA\website\1.2\website
-```
+The canonical production website source is `website/`. The former nested website repo is no longer part of the canonical parent-repository layout.
 
 GitHub Pages deploys this directory from:
 
