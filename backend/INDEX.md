@@ -1,96 +1,34 @@
 # Backend Module Index
 
-Quick reference guide to backend modules and their purposes.
+## Dependency direction
 
-## Module Hierarchy
+```
+routers -> services -> repositories/providers
+                 |
+                 +-> models
+```
 
-**Import Order (lowest to highest)**:
-1. `database/` - Data access layer
-2. `utils/` - Business logic and utilities
-3. `routers/` - API endpoints
-4. `main.py` - Application entry
+### routers/
+HTTP and WebSocket adapters. No business workflow orchestration.
 
-## Database Layer (`database/`)
+### services/
+Application use cases. This is where a request becomes a meaningful Aura operation such as chat, transcription, memory creation, or conversation processing.
 
-### Core Modules
+### repositories/
+Persistence boundaries for Firestore, Redis, Pinecone, storage, and other data stores. Existing `database/` modules are being migrated here incrementally.
 
-- `conversations.py` - Firestore conversation operations
-- `memories.py` - Memory storage and retrieval
-- `vector_db.py` - Pinecone vector operations
-- `redis_db.py` - Redis caching
-- `action_items.py` - Task management
-- `users.py` - User data operations
-- `apps.py` - App/plugin data
+### providers/
+External service clients and AI model configuration. Provider selection belongs here rather than in route handlers.
 
-### Supporting Modules
+### models/
+Pydantic models and lightweight domain structures shared by layers.
 
-- `auth.py` - Authentication data
-- `dev_api_key.py` - Developer API key management
-- `mcp_api_key.py` - MCP API key management
-- `notifications.py` - Notification data
-- `calendar_meetings.py` - Calendar event storage
-- `folders.py` - Conversation folder management
-- `goals.py` - User goals
-- `knowledge_graph.py` - Knowledge graph operations
-- `wrapped.py` - Year-end summary data
-- `trends.py` - Analytics data
-- `cache.py` / `cache_manager.py` - Caching utilities
+### utils/
+Legacy compatibility area. New application logic should not be added here. Existing modules move out only when a change already touches them.
 
-## Utils Layer (`utils/`)
+### migrations/, scripts/, testing/
+Operational and maintenance code. They are not application layers.
 
-### LLM Processing (`utils/llm/`)
+## Deep-module rule
 
-- `clients.py` - LLM client configurations
-- `conversation_processing.py` - Conversation analysis
-- `chat.py` - Chat-related processing
-
-### Retrieval System (`utils/retrieval/`)
-
-- `graph.py` - LangGraph agentic system
-- `rag.py` - Retrieval-Augmented Generation
-- `tools/` - LangGraph tools
-
-### Conversation Processing (`utils/conversations/`)
-
-- `process_conversation.py` - Main processing pipeline
-- `postprocess_conversation.py` - Post-processing
-- `memories.py` - Memory extraction
-- `search.py` - Conversation search
-
-### Speech-to-Text (`utils/stt/`)
-
-- `streaming.py` - Real-time STT processing
-- `pre_recorded.py` - Pre-recorded transcription
-- `vad.py` - Voice Activity Detection
-
-## Routers Layer (`routers/`)
-
-### Core Endpoints
-
-- `transcribe.py` - Audio streaming
-- `conversations.py` - Conversation management
-- `chat.py` - Chat system
-- `memories.py` - Memory operations
-- `action_items.py` - Task management
-
-### Developer & Integration
-
-- `developer.py` - Developer API
-- `mcp.py` / `mcp_sse.py` - MCP server
-- `apps.py` - App management
-
-### Authentication
-
-- `auth.py` - Core authentication
-- `oauth.py` - OAuth callbacks
-- `custom_auth.py` - Custom auth flows
-
-## Main Application
-
-- `main.py` - FastAPI app setup and configuration
-
-## Related Documentation
-
-- Backend Components: `.cursor/BACKEND_COMPONENTS.md`
-- Backend Architecture: `.cursor/rules/backend-architecture.mdc`
-- Backend Deep Dive: `docs/doc/developer/backend/backend_deepdive.mdx`
+A module should own a complete decision, expose a small interface, and hide the details required to implement that decision. Avoid wrappers that merely rename another function or pass arguments through.
