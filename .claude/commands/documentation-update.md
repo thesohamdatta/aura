@@ -1,36 +1,19 @@
 ---
 name: documentation-update
-description: Workflow command scaffold for documentation-update in aura.
+description: Run the Aura documentation workflow using canonical Markdown engineering rules.
 allowed_tools: ["Bash", "Read", "Write", "Grep", "Glob"]
 ---
 
 # /documentation-update
 
-Use this workflow when working on **documentation-update** in `aura`.
+Start with [AGENTS.md](../../../../AGENTS.md), [REPO_MAP.md](../../../../REPO_MAP.md), and [docs/markdown-engineering.md](../../../../docs/markdown-engineering.md).
 
-## Goal
+Follow the [Aura SDLC](../../../../docs/agentic-sdlc.md).
 
-Make targeted improvements or additions to project documentation, including troubleshooting, agent rules, and development guides.
+When documentation changes durable project knowledge:
+1. update the single canonical owner;
+2. repair dependent links;
+3. run the context audit;
+4. record verification evidence.
 
-## Common Files
-
-- `website/docs.html`
-- `website/docs/specs/AGENT_RULES.md`
-- `website/docs/specs/DEVELOPMENT_GUIDE.md`
-
-## Suggested Sequence
-
-1. Understand the current state and failure mode before editing.
-2. Make the smallest coherent change that satisfies the workflow goal.
-3. Run the most relevant verification for touched files.
-4. Summarize what changed and what still needs review.
-
-## Typical Commit Signals
-
-- Edit relevant documentation files (e.g., website/docs.html, AGENT_RULES.md, DEVELOPMENT_GUIDE.md).
-- Commit with a message referencing the section or purpose of the doc change.
-
-## Notes
-
-- Treat this as a scaffold, not a hard-coded script.
-- Update the command if the workflow evolves materially.
+This command is an adapter, not a second source of truth.
