@@ -224,29 +224,23 @@ def agentic_context_dependent_conversation(state: GraphState):
     if streaming:
         callback_data = {}
 
-        async def run_agentic_stream():
-            async for chunk in execute_agentic_chat_stream(
-                uid,
-                messages,
-                app,
-                callback_data=callback_data,
-                chat_session=state.get("chat_session"),
-                context=state.get("context"),
-            ):
-                if chunk:
-                    # Forward streaming chunks through callback
-                    if chunk.startswith("data: "):
-                        state.get('callback').put_data_nowait(chunk.replace("data: ", ""))
-                    elif chunk.startswith("think: "):
-                        state.get('callback').put_thought_nowait(chunk.replace("think: ", ""))
+        async for chunk in execute_agentic_chat_stream(
+            uid,
+            messages,
+            app,
+            callback_data=callback_data,
+            chat_session=state.get("chat_session"),
+            context=state.get("context"),
+        ):
+            if chunk:
+                # Forward streaming chunks through the graph callback.
+                if chunk.startswith("data: "):
+                    state.get('callback').put_data_nowait(chunk.replace("data: ", ""))
+                elif chunk.startswith("think: "):
+                    state.get('callback').put_thought_nowait(chunk.replace("think: ", ""))
 
-        # Run the async streaming
-        asyncio.run(run_agentic_stream())
-
-        # Signal completion to the callback
-        state.get('callback').end_nowait()
-
-        # Extract results from callback_data
+        # The agentic stream owns its execution lifecycle. The graph only adapts
+        # its events into the graph callback and returns the collected result.
         answer = callback_data.get('answer', '')
         memories_found = callback_data.get('memories_found', [])
         ask_for_nps = callback_data.get('ask_for_nps', False)
