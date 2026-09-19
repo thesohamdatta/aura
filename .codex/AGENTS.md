@@ -1,27 +1,13 @@
-# ECC for Codex CLI
+# Codex Repository Guidance
 
-This supplements the root `AGENTS.md` with a repo-local ECC baseline.
+This file is a thin adapter over Aura's canonical agent guidance.
 
-## Repo Skill
+Start with [../../AGENTS.md](../../AGENTS.md), then use the Codex-specific role definitions under [agents/](agents/) when needed.
 
-- Repo-generated Codex skill: `.agents/skills/aura/SKILL.md`
-- Claude-facing companion skill: `.claude/skills/aura/SKILL.md`
-- Keep user-specific credentials and private MCPs in `~/.codex/config.toml`, not in this repo.
+## Roles
 
-## MCP Baseline
+- Explorer: read-only evidence gathering.
+- Reviewer: read-only correctness, security, regression, and architecture review.
+- Docs researcher: primary-source documentation verification.
 
-Treat `.codex/config.toml` as the default ECC-safe baseline for work in this repository.
-The generated baseline enables GitHub, Context7, Exa, Memory, Playwright, and Sequential Thinking.
-
-## Multi-Agent Support
-
-- Explorer: read-only evidence gathering
-- Reviewer: correctness, security, and regression review
-- Docs researcher: API and release-note verification
-
-## Workflow Files
-
-- `.claude/commands/design-system-update.md`
-- `.claude/commands/documentation-update.md`
-
-Use these workflow files as reusable task scaffolds when the detected repository workflows recur.
+Keep this file adapter-only. Do not duplicate repository rules here.
