@@ -2,92 +2,50 @@
 
 ## Project
 
-Aura is an open-source, screenless, voice-first AI pendant. It combines:
+Aura is an open-source, screenless, voice-first multimodal AI pendant.
 
+- `backend/`: Python FastAPI backend and AI/data workflows.
 - `firmware/`: XIAO ESP32-S3 Sense firmware.
-- `backend/`: FastAPI AI backend.
-- `app/`: Android companion app.
-- `hardware/`: printable case and hardware notes.
-- `website/1.2/website/`: production website.
-
-The current maintainer is solo. Optimize workflows for one strong maintainer assisted by coding agents, while keeping the repo understandable for future contributors.
+- `app/`: Android companion application.
+- `hardware/`: physical design and build material.
+- `website/`: current static website.
 
 ## Source Of Truth
 
-Read [REPO_MAP.md](REPO_MAP.md) before structural work.
+Start with [REPO_MAP.md](REPO_MAP.md), then load only the nearest relevant context.
 
-The production website is `website/1.2/website/`. Do not restore the old 5-page website. The current website contract is:
-
-- `index.html`
-- `manifesto.html`
-- `docs.html`
-- `404.html`
-
-The old `docs/` website copy and `website/1.1/` are legacy/deleted state. Do not treat them as canonical.
-
-## Git Boundaries
-
-This workspace contains a nested git repo:
-
-- Parent repo: `D:\PROJECTS\AURA`
-- Website repo: `D:\PROJECTS\AURA\website\1.2`
-
-Before commits, run `git rev-parse --show-toplevel`. Website work belongs in `website/1.2`. Parent work belongs in `D:\PROJECTS\AURA`.
-
-Never run broad staging from the parent repo unless the goal is explicitly parent-level repo management.
+Canonical knowledge boundaries are documented in [docs/markdown-engineering.md](docs/markdown-engineering.md).
 
 ## Agentic SDLC
 
-Use [docs/agentic-sdlc.md](docs/agentic-sdlc.md) for the workflow.
+For substantive work follow [docs/agentic-sdlc.md](docs/agentic-sdlc.md) and [docs/WORKFLOW.md](docs/WORKFLOW.md):
 
-Default loop:
+`context -> grill -> brainstorm -> plan -> spec -> tickets -> implement -> verify -> review -> document -> ship -> learn`
 
-`context -> grill -> plan -> issue/spec -> implement -> verify -> review -> document -> ship`
+## Knowledge rules
 
-Rules:
+- Keep this file short and always-on.
+- Put repository navigation in [REPO_MAP.md](REPO_MAP.md).
+- Put stable domain context in [CONTEXT.md](CONTEXT.md).
+- Put durable decisions in [docs/adr/](docs/adr/).
+- Put repeatable procedures in [.agents/skills/](.agents/skills/).
+- Put task-local plans/specs/evidence in [docs/work/](docs/work/).
+- Use [docs/knowledge/INDEX.md](docs/knowledge/INDEX.md) for durable entry points.
+- One durable fact should have one canonical home. Link to it instead of copying it.
+- Promote durable discoveries at the end of substantive work so the repository compounds over time.
 
-- Context first. Read repo map, relevant README, `CONTEXT.md`, and local `AGENTS.md`.
-- Ask decisions, not facts. Look up facts in the repo.
-- Keep `AGENTS.md` short. Put longer workflows in docs or skills.
-- Use skills for repeatable procedures.
-- Use hooks or CI for deterministic guardrails when available.
-- Record hard-to-reverse decisions as ADRs in `docs/adr/`.
-- Update context docs when a durable project term or boundary changes.
+## Safety and scope
 
-## Website Design Contract
+Never commit secrets.
 
-For website edits, read these in order:
+For firmware, preserve hardware and protocol contracts unless explicitly changed. Be especially careful with BLE UUIDs, packet formats, timing, power, camera, and audio behavior.
 
-1. `website/1.2/BRAND_BRIEF.md`
-2. `website/1.2/DESIGN.md`
-3. `website/1.2/PRODUCT.md`
-4. `website/1.2/CONTEXT.md`
-
-Website principles:
-
-- Apple-like product page discipline.
-- Photography first.
-- One accent color: Action Blue.
-- No hype, no fake claims, no exclamation marks.
-- CSS literals belong in design tokens, not component styles.
-- Keep pages static HTML/CSS/JS. No framework or build step.
-
-## Local Skills
-
-Use these project skills when relevant:
-
-- `.agents/skills/aura-agentic-sdlc/`: repo workflow and AI SDLC.
-- `.agents/skills/apple-aura-frontend/`: Aura website design.
-- `.agents/skills/apple-design-analysis/`: Apple-style visual rules.
-- `.agents/skills/karpathy-guidelines/`: small, careful engineering changes.
+For website work, [REPO_MAP.md](REPO_MAP.md) is authoritative for the active page contract.
 
 ## Verification
 
-Prefer the smallest verification that matches the change:
+Use the smallest useful check for the touched area and record the evidence. For Markdown/context work, run the context audit when relevant.
 
-- Website static check: inspect HTML/CSS and run a local browser/server when visual changes matter.
-- Harness check in `website/1.2`: `python -c "from google.antigravity import Agent"` if changing harness code.
-- GitHub Pages deploy path check: `.github/workflows/deploy-website.yml` uploads `website/1.2/website`.
+## Context budget
 
-If no automated test exists for a touched area, say that in the final response.
-this file is source of the truth for the entire aura project make sure this is well maintained . without context burn
+Do not load unrelated project history. Use progressive disclosure and follow links to deeper knowledge only when the task requires it.
