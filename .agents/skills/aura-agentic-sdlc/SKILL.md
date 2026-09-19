@@ -5,50 +5,45 @@ description: Use when planning, scoping, implementing, reviewing, or documenting
 
 # Aura Agentic SDLC
 
-Use this skill for Aura work that needs context, planning, implementation, review, or durable documentation.
+## Pipeline
 
-## Sequence
+`context -> grill -> brainstorm -> plan -> spec -> tickets -> implement -> verify -> review -> document -> ship -> learn`
 
-1. Read `AGENTS.md`.
-2. Read `REPO_MAP.md`.
-3. Run `git rev-parse --show-toplevel` before any git operation.
-4. Read the nearest relevant `CONTEXT.md`.
-5. Read the area source of truth:
-   - Website: `website/1.2/BRAND_BRIEF.md`, `website/1.2/DESIGN.md`, `website/1.2/PRODUCT.md`.
-   - Agentic workflow: `docs/agentic-sdlc.md`.
-   - Website harness: `website/1.2/AGENTS.md`.
-6. Inspect actual files before proposing changes.
-7. Ask one decision question at a time when intent is unclear.
-8. Make the smallest coherent change.
-9. Verify with the closest available check.
-10. Update durable docs only when knowledge will matter in future sessions.
+Do not skip a substantive gate. Deployment remains human-controlled.
 
-## Decisions vs Facts
+## Context
+Read:
+1. `AGENTS.md`
+2. `REPO_MAP.md`
+3. nearest relevant `CONTEXT.md`
+4. area README/design contract
+5. relevant skill, workflow, and ADR
 
-Look up facts in the repo. Ask the maintainer for decisions.
+Inspect actual source before proposing changes.
 
-Examples:
+## Grill
+Produce problem, desired outcome, evidence, constraints, risks, non-goals, and unresolved decisions. Do not implement while a material decision is unresolved.
 
-- Fact: "Which directory deploys?" Read `.github/workflows/deploy-website.yml`.
-- Decision: "Should the website gain a new page?" Ask the maintainer.
+## Brainstorm
+Generate a small set of viable approaches. Compare concepts, files, dependencies, reversibility, and verification cost. Record the selected approach in the plan.
 
-## Documentation Targets
+## Plan / Spec
+Persist multi-step work under `docs/work/` and include affected files, ownership, acceptance criteria, verification, and non-goals.
 
-- `CONTEXT.md`: glossary and domain terms only.
-- `REPO_MAP.md`: canonical paths and repo boundaries.
-- `docs/adr/`: hard-to-reverse decisions.
-- `docs/agentic-sdlc.md`: workflow.
-- Issue/PR templates: structured work intake and review checklist.
+## Implement
+One coherent change at a time. Preserve unrelated work and existing contracts.
 
-## Website Lock
+## Verify
+For Markdown/context changes, validate links, referenced paths, frontmatter, canonical references, stale/deprecated paths, and orphaned knowledge. For code, use the closest existing test/build/lint check.
 
-The production website is `website/1.2/website/`.
+## Review
+Fresh read of the final diff. Check correctness, security, regressions, architecture, context pollution, stale or duplicated knowledge, and missing verification.
 
-Current page contract:
+## Document / Learn
+Promote only durable discoveries into one canonical home. Add backlinks where useful. Do not turn temporary observations into permanent rules.
 
-- `index.html`
-- `manifesto.html`
-- `docs.html`
-- `404.html`
+## Ship
+Before shipping, confirm repository boundary, verification evidence, and review state.
 
-Do not restore `about.html` or `ai.html` unless the maintainer explicitly changes the contract.
+## Compounding loop
+The repository should become easier for the next agent to understand. Successful discoveries become clearer context, reusable skills, ADRs, workflow improvements, or verification rules rather than more raw Markdown.
