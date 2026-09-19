@@ -1,94 +1,72 @@
-```markdown
-# aura Development Patterns
+---
+name: aura
+description: Use for substantive work in the Aura repository. Load this skill to understand project structure, architectural boundaries, verification rules, and canonical context navigation.
+---
 
-> Auto-generated skill from repository analysis
+# Aura Repository Skill
 
-## Overview
-This skill teaches the core development patterns, coding conventions, and workflows used in the `aura` JavaScript codebase. The repository is a framework-agnostic project focused on maintainable design systems, clear documentation, and conventional commit practices. You'll learn how to contribute code, update the design system, maintain documentation, and write tests in alignment with the project's standards.
+## Context loading
 
-## Coding Conventions
+Start with:
+1. `AGENTS.md`
+2. `REPO_MAP.md`
+3. nearest relevant `CONTEXT.md`
+4. the area README or design contract
 
-**File Naming**
-- Use PascalCase for all file names.
-  - Example: `ButtonComponent.js`, `DesignSystemUtils.js`
+Treat code, tests, and deployment configuration as the implementation source of truth when documentation conflicts.
 
-**Import Style**
-- Use relative imports for all modules.
-  ```javascript
-  import { Button } from './ButtonComponent.js';
-  ```
+## Repository shape
 
-**Export Style**
-- Use named exports exclusively.
-  ```javascript
-  // ButtonComponent.js
-  export function Button(props) { /* ... */ }
-  ```
+- `backend/`: Python FastAPI backend and AI/data workflows
+- `firmware/`: XIAO ESP32-S3 Sense firmware
+- `app/`: Android companion application
+- `hardware/`: physical design and build material
+- `website/`: current static website
+- `.agents/skills/`: repeatable agent procedures
+- `docs/`: durable project knowledge, workflows, and decisions
 
-**Commit Messages**
-- Follow the [Conventional Commits](https://www.conventionalcommits.org/) standard.
-- Use prefixes like `fix:` or `feat:`.
-- Example:
-  ```
-  feat: add new color utility classes to global.css
-  fix: correct padding utility in global.css
-  ```
+## Architecture
 
-## Workflows
+Prefer deep modules, shallow roles, small public APIs, clear ownership, explicit dependencies, local reasoning, and minimal abstraction.
 
-### Design System Update
-**Trigger:** When updating, migrating, or enforcing design system utilities or patterns (e.g., CSS utility classes).
-**Command:** `/update-design-system`
+Avoid speculative layers, generic managers/factories, single-implementation interfaces, delegation-only wrappers, and duplicate orchestration.
 
-1. Edit or add CSS utility classes in `website/css/global.css` or related CSS files.
-2. Update HTML files (`website/index.html`, `website/docs.html`) to use the new or migrated classes.
-3. Optionally update or reference verification/linter rules in documentation (`AGENT_RULES.md`, `DEVELOPMENT_GUIDE.md`).
-4. Verify changes using local or documented linter/verification scripts.
+For architecture/refactoring work, load `.agents/skills/improve-codebase-architecture/SKILL.md`.
 
-**Example:**
-```css
-/* website/css/global.css */
-.bg-primary {
-  background-color: #007aff;
-}
-```
-```html
-<!-- website/index.html -->
-<div class="bg-primary">Hello, Aura!</div>
-```
+## Canonical knowledge
 
-### Documentation Update
-**Trigger:** When clarifying, fixing, or extending documentation for users or contributors.
-**Command:** `/update-docs`
+Use:
+- `AGENTS.md`: always-on operating rules and navigation
+- `REPO_MAP.md`: repository paths and ownership
+- `CONTEXT.md`: stable project vocabulary and durable context
+- `docs/agentic-sdlc.md`: role model and lifecycle
+- `docs/WORKFLOW.md`: delivery loop and evidence gates
+- `docs/adr/`: hard-to-reverse decisions
+- `.agents/skills/*/SKILL.md`: repeatable procedures
 
-1. Edit the relevant documentation files (`website/docs.html`, `AGENT_RULES.md`, `DEVELOPMENT_GUIDE.md`).
-2. Commit with a message referencing the section or purpose of the doc change.
+Tool-specific files should point to canonical sources instead of duplicating their rules.
 
-**Example:**
-```
-feat: update DEVELOPMENT_GUIDE.md with new linter instructions
-```
+## Change discipline
 
-## Testing Patterns
+Before editing:
+- trace the real execution path
+- identify the owning boundary
+- find the canonical knowledge source
+- define a small success criterion
 
-- Test files use the pattern `*.test.*` (e.g., `ButtonComponent.test.js`).
-- The specific testing framework is not documented; follow the existing test file patterns.
-- Place test files alongside the modules they test or in a dedicated test directory.
+During editing:
+- make the smallest coherent change
+- preserve behavior and contracts
+- avoid unrelated cleanup
+- update canonical documentation when durable knowledge changes
 
-**Example:**
-```javascript
-// ButtonComponent.test.js
-import { Button } from './ButtonComponent.js';
+After editing:
+- run the closest focused verification
+- inspect the diff
+- validate links and referenced paths when Markdown/context is touched
 
-test('Button renders correctly', () => {
-  // ...test logic...
-});
-```
+## Context budget
 
-## Commands
+Use progressive disclosure. Load only context relevant to the task. Prefer links to deeper knowledge over duplication.
 
-| Command                | Purpose                                                    |
-|------------------------|------------------------------------------------------------|
-| /update-design-system  | Start a design system update workflow                      |
-| /update-docs           | Start a documentation update workflow                      |
-```
+When you discover durable knowledge, classify it as rule, map, context, ADR, skill, or task evidence. Put it in one canonical home and link dependents to it.
