@@ -1,52 +1,52 @@
-<div align="center">
-  <p align="center"><code>[ SIGNAL 01 // THE BRAIN ]</code></p>
-  <h1><b><font color="#E63B2E">BACKEND</font></b></h1>
-</div>
+# Aura Backend
 
-<br/>
+FastAPI backend for Aura's capture, memory, retrieval, and AI workflows.
 
-<div align="center">
-  <img src="../Assets/MAIN/diagram.jpg" width="90%"/>
-</div>
+## Architecture
 
-<br/>
-
-FastAPI backend that powers Aura's transcription, vision analysis, memory storage, and AI chat pipeline.
-
----
-
-## Quick Start
-
-1. **Install** dependencies: `pip install -r requirements.txt`
-2. **Configure** keys: `copy .env.template .env`
-3. **Run** server: `uvicorn main:app --reload`
-4. **Tunnel** via ngrok: `ngrok http 8000`
-
----
-
-## What it does
-
-| Feature | Provider |
-|:---|:---|
-| STT | Deepgram |
-| Vision | GPT-4o |
-| Vector DB | Pinecone |
-| Agent | LangGraph |
-
----
-
-## Module Structure
+The backend follows a deliberately small dependency direction:
 
 ```
-backend/
-├── main.py           ← entry point
-├── routers/          ← API endpoints
-├── database/         ← data layer
-└── utils/            ← LLM & STT logic
+HTTP / WebSocket
+      ↓
+routers/
+      ↓
+services/
+      ↓
+repositories/ + providers/
 ```
 
-<br/>
+- `routers/` owns HTTP concerns only: validation, authentication, status codes, and response serialization.
+- `services/` owns application behavior and orchestration.
+- `repositories/` owns persistence and external data stores.
+- `providers/` owns replaceable external AI/infrastructure clients.
+- `models/` contains request, response, and domain data structures.
 
----
+Do not add a new abstraction layer unless it removes a real dependency or makes a concrete boundary easier to test.
 
-> **DEEP DIVE:** For Firebase setup, Firestore indexing, and API key references, visit the [Backend Setup Guide](../docs/guides/backend-setup.md).
+## Core request path
+
+Chat should have one application entry point:
+
+```
+routers/chat.py
+    -> services/chat.py
+        -> retrieval/chat.py
+            -> repositories + providers
+```
+
+Streaming and non-streaming are two delivery modes of the same service operation. They should not create parallel business logic.
+
+## Rules
+
+1. Prefer one deep module over many shallow helpers.
+2. Keep routers thin. A route should normally read as: authenticate -> call service -> serialize result.
+3. Keep provider details out of services when practical.
+4. Keep Firestore, Redis, Pinecone, and provider SDK imports out of domain modules.
+5. Prefer plain functions and small data objects over speculative classes.
+6. Delete dead paths instead of preserving duplicate implementations.
+7. Preserve public API behavior while refactoring internals.
+
+## Verification
+
+Run the smallest relevant test set after changes. For chat changes, run the chat/retrieval unit tests and a Python import check before considering the refactor complete.
