@@ -18,8 +18,8 @@ git rev-parse --show-toplevel
 | Area                   | Path                                                                             | Current role                                        |
 | ---------------------- | -------------------------------------------------------------------------------- | --------------------------------------------------- |
 | Website                | `website/`                                                           | Production static website served by GitHub Pages    |
-| Website design sources | `website/1.2/BRAND_BRIEF.md`, `website/1.2/DESIGN.md`, `website/1.2/PRODUCT.md`  | Design and product contract for website agents      |
-| Website harness        | `website/1.2/agent_harness.py`, `website/1.2/workflows/`, `website/1.2/prompts/` | Agentic Architect -> Developer -> Reviewer workflow |
+| Website design sources | `website/BRAND_BRIEF.md`, `website/DESIGN.md`, `website/PRODUCT.md`  | Design and product contract for website agents      |
+| Website harness        | `website/` agent files, when present | Website-specific workflows |
 | Firmware               | `firmware/`                                                                      | Pendant firmware                                    |
 | Backend                | `backend/`                                                                       | AI backend                                          |
 | Android app            | `app/`                                                                           | Companion app                                       |
@@ -48,7 +48,7 @@ Do not treat `website/1.1/` or deleted files under parent `docs/` as active webs
 ## Documentation Truth
 
 - Top-level project context: `CONTEXT.md`
-- Website/harness context: `website/1.2/CONTEXT.md`
+- Website context: `website/CONTEXT.md`
 - Agentic workflow: `docs/agentic-sdlc.md`
 - Architecture decisions: `docs/adr/`
 
