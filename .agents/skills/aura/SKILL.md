@@ -1,94 +1,140 @@
-```markdown
-# aura Development Patterns
+---
+name: aura
+description: Use for any substantive work in the Aura repository. Load this skill to understand the real project structure, architecture boundaries, coding style, verification rules, and when to use specialized repo skills.
+---
 
-> Auto-generated skill from repository analysis
+# Aura Repository Skill
 
-## Overview
-This skill teaches the core development patterns, coding conventions, and workflows used in the `aura` JavaScript codebase. The repository is a framework-agnostic project focused on maintainable design systems, clear documentation, and conventional commit practices. You'll learn how to contribute code, update the design system, maintain documentation, and write tests in alignment with the project's standards.
+Aura is an open-source screenless, voice-first multimodal AI pendant.
 
-## Coding Conventions
+## Read First
 
-**File Naming**
-- Use PascalCase for all file names.
-  - Example: `ButtonComponent.js`, `DesignSystemUtils.js`
+For structural work:
+1. `AGENTS.md`
+2. `REPO_MAP.md`
+3. nearest `CONTEXT.md`
+4. area README or design contract
 
-**Import Style**
-- Use relative imports for all modules.
-  ```javascript
-  import { Button } from './ButtonComponent.js';
-  ```
+Treat actual code, deployment config, and tests as the source of truth when docs conflict.
 
-**Export Style**
-- Use named exports exclusively.
-  ```javascript
-  // ButtonComponent.js
-  export function Button(props) { /* ... */ }
-  ```
+## Repository Shape
 
-**Commit Messages**
-- Follow the [Conventional Commits](https://www.conventionalcommits.org/) standard.
-- Use prefixes like `fix:` or `feat:`.
-- Example:
-  ```
-  feat: add new color utility classes to global.css
-  fix: correct padding utility in global.css
-  ```
+- `backend/`: Python FastAPI backend and AI/data workflows
+- `firmware/`: XIAO ESP32-S3 Sense firmware
+- `app/`: companion Android/Flutter application
+- `hardware/`: physical design and build material
+- `website/`: current static website
+- `.agents/skills/`: repeatable agent procedures
 
-## Workflows
+Do not assume a folder name implies architectural ownership.
 
-### Design System Update
-**Trigger:** When updating, migrating, or enforcing design system utilities or patterns (e.g., CSS utility classes).
-**Command:** `/update-design-system`
+## Architecture Rules
 
-1. Edit or add CSS utility classes in `website/css/global.css` or related CSS files.
-2. Update HTML files (`website/index.html`, `website/docs.html`) to use the new or migrated classes.
-3. Optionally update or reference verification/linter rules in documentation (`AGENT_RULES.md`, `DEVELOPMENT_GUIDE.md`).
-4. Verify changes using local or documented linter/verification scripts.
+Prefer:
+- deep modules
+- shallow roles
+- small public APIs
+- clear ownership
+- local reasoning
+- explicit dependencies
+- boring implementations
+- minimal abstraction
 
-**Example:**
-```css
-/* website/css/global.css */
-.bg-primary {
-  background-color: #007aff;
-}
-```
-```html
-<!-- website/index.html -->
-<div class="bg-primary">Hello, Aura!</div>
-```
+Avoid:
+- abstraction for abstraction's sake
+- generic managers/factories
+- interfaces that mirror one implementation
+- service wrappers that only delegate
+- speculative dependency injection
+- duplicate orchestration
+- framework-driven structure
 
-### Documentation Update
-**Trigger:** When clarifying, fixing, or extending documentation for users or contributors.
-**Command:** `/update-docs`
+The goal is fewer concepts and clearer boundaries, not more layers.
 
-1. Edit the relevant documentation files (`website/docs.html`, `AGENT_RULES.md`, `DEVELOPMENT_GUIDE.md`).
-2. Commit with a message referencing the section or purpose of the doc change.
+## Backend Boundaries
 
-**Example:**
-```
-feat: update DEVELOPMENT_GUIDE.md with new linter instructions
-```
+Use this as the default mental model:
 
-## Testing Patterns
+`routers -> application behavior -> domain decisions -> infrastructure`
 
-- Test files use the pattern `*.test.*` (e.g., `ButtonComponent.test.js`).
-- The specific testing framework is not documented; follow the existing test file patterns.
-- Place test files alongside the modules they test or in a dedicated test directory.
+In the current backend:
+- `routers/` handles HTTP transport/auth/serialization
+- `database/` owns persistence
+- provider-specific code owns external AI/service integrations
+- application behavior should hide orchestration complexity
 
-**Example:**
-```javascript
-// ButtonComponent.test.js
-import { Button } from './ButtonComponent.js';
+Do not create `services/`, `repositories/`, or `providers/` mechanically. Add a module only when it owns a meaningful decision.
 
-test('Button renders correctly', () => {
-  // ...test logic...
-});
-```
+Chat is a high-value boundary. Keep callers independent of whether the implementation uses graph routing, RAG, agents, or direct model calls.
 
-## Commands
+## Firmware
 
-| Command                | Purpose                                                    |
-|------------------------|------------------------------------------------------------|
-| /update-design-system  | Start a design system update workflow                      |
-| /update-docs           | Start a documentation update workflow                      |
-```
+Keep `firmware/src/app.cpp` primarily coordinating behavior.
+
+Prefer small modules for:
+- audio
+- camera
+- BLE
+- power
+- button/LED
+- OTA
+
+Do not introduce peripheral class hierarchies unless they solve a demonstrated problem.
+
+Preserve hardware and protocol contracts, including BLE UUIDs, packet formats, timing, and power behavior.
+
+## Change Discipline
+
+Before editing:
+- inspect the real execution path
+- identify ownership
+- define a small success criterion
+
+During editing:
+- make the smallest coherent change
+- preserve behavior
+- avoid unrelated cleanup
+- remove only dead code made obsolete by your change
+
+After editing:
+- run the closest focused verification
+- inspect the diff
+- update durable documentation only when project knowledge changed
+
+Prefer one architectural reason per commit.
+
+## Documentation
+
+- `AGENTS.md`: concise always-on agent rules
+- `REPO_MAP.md`: canonical paths and boundaries
+- `docs/agentic-sdlc.md`: workflow
+- `docs/adr/`: hard-to-reverse decisions
+- `.agents/skills/*/SKILL.md`: repeatable procedures
+
+Do not duplicate long explanations across these files.
+
+## Specialized Skills
+
+Use when relevant:
+- `.agents/skills/aura-agentic-sdlc/`: agent workflow
+- `.agents/skills/karpathy-guidelines/`: careful, minimal implementation
+- `.agents/skills/apple-aura-frontend/`: Aura website work
+- `.agents/skills/apple-design-analysis/`: Apple-style design analysis
+
+For architecture/refactoring, combine the Aura skill with the Karpathy guidelines. Do not assume a Matt Pocock-specific skill exists in this repository unless one is actually present.
+
+## Verification Principle
+
+Verify behavior, not implementation details.
+
+If automated verification is unavailable for a touched area, document that explicitly in the PR.
+
+## Context Budget
+
+Keep this skill compact. Link to deeper documents instead of embedding long project history here.
+
+The skill exists to help an agent decide:
+1. where to look
+2. what boundary owns the decision
+3. what not to change
+4. how to verify the result
