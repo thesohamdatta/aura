@@ -48,7 +48,6 @@
 | Run the backend | [`backend/README.md`](backend/README.md) |
 | Build the Android app | [`app/README.md`](app/README.md) |
 | Print the enclosure | [`hardware/README.md`](hardware/README.md) |
-| Understand the product | [`website/manifesto.html`](website/manifesto.html) |
 
 ## HOW THE STACK FITS
 
