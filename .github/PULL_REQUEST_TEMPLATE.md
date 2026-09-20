@@ -12,7 +12,6 @@ What changed, and where?
 - [ ] Backend
 - [ ] Android app
 - [ ] Hardware
-- [ ] Website
 - [ ] Agent docs / workflow
 
 ## Verification
@@ -31,7 +30,3 @@ List commands run or manual checks performed.
 - [ ] I updated durable docs if project knowledge changed.
 - [ ] I recorded an ADR if this is hard to reverse and non-obvious.
 - [ ] I noted test gaps or manual verification limits.
-
-## Screenshots
-
-Required for website visual changes. Include desktop and mobile evidence when layout or interaction changes.
