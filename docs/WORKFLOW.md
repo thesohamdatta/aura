@@ -14,7 +14,7 @@ This portable workflow works with Codex, Claude Code, Cursor and Gemini CLI. It 
 | Tickets    | Small, independently reviewable tasks.                            | Every task has an acceptance criterion.                   |
 | Implement  | Focused diff for one task.                                        | Preserve unrelated user changes.                          |
 | Review     | Findings or explicit approval.                                    | A fresh pass reviews shipping changes.                    |
-| Pre-commit | Commands, screenshots or manual-inspection evidence.              | Fix failures or document the limitation.                  |
+| Pre-commit | Commands and manual-inspection evidence.                          | Fix failures or document the limitation.                  |
 | Commit     | Small, scoped checkpoint.                                         | Confirm the repository boundary first.                    |
 | Deploy     | Deployment result and published status.                           | Human approval is required.                               |
 | Maintain   | Follow-up issue, ADR or context update when durable facts change. | Do not encode temporary facts as permanent rules.         |
@@ -26,13 +26,8 @@ Start with **change discovery**: research an idea, grill it, and draft a spec an
 ## Evidence is the contract
 
 - Behavioural changes need a focused automated test or documented manual test.
-- Website visual changes need desktop and mobile inspection, keyboard check, and reduced-motion check when motion changes.
 - Public claims need an Aura-owned source or must be removed.
-- Deployment changes need the deployment path and published result verified.
-
-## Website route
-
-For `website/`, inspect the active HTML, CSS, JavaScript, assets, and `.github/workflows/deploy-website.yml` before planning. The production site is static; do not add a framework or build step without an approved spec.
+- Deployment changes need the affected deployment path and published result verified.
 
 ## Keep the harness small
 
