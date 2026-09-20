@@ -6,7 +6,7 @@
 
 ## Website work
 
-For work in `website/1.2/`, read its local `AGENTS.md` before editing.
+For work in `website/`, inspect the active source and deployment guidance before editing.
 
 Follow [docs/WORKFLOW.md](docs/WORKFLOW.md) for changes intended to ship.
 

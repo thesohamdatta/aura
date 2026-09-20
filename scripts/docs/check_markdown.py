@@ -49,6 +49,17 @@ def check(path: Path) -> list[str]:
         if re.match(r"^\s*(?:[-*]\s+)?(?:This|It)\b", line):
             errors.append(f"bare sentence opener at line {line_no}")
 
+    prose = re.sub(r"\x60\x60\x60.*?\x60\x60\x60", "", text, flags=re.S)
+    for sentence_no, sentence in enumerate(
+        re.split(r"(?<=[.!?])\s+|\n+", prose),
+        1,
+    ):
+        words = re.findall(r"\b[\w’'-]+\b", sentence)
+        if len(words) > 25:
+            errors.append(
+                f"sentence > 25 words near sentence {sentence_no} ({len(words)} words)"
+            )
+
     return errors
 
 

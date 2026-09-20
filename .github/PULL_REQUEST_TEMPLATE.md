@@ -12,7 +12,7 @@ What changed, and where?
 - [ ] Backend
 - [ ] Android app
 - [ ] Hardware
-- [ ] Website 1.2
+- [ ] Website
 - [ ] Agent docs / workflow
 
 ## Verification
@@ -34,4 +34,4 @@ List commands run or manual checks performed.
 
 ## Screenshots
 
-Required for website visual changes.
+Required for website visual changes. Include desktop and mobile evidence when layout or interaction changes.

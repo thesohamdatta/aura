@@ -5,7 +5,7 @@
 | Path | Git root | Purpose |
 |---|---|---|
 | parent repository | parent root | Hardware, firmware, backend, Android app, deployment, top-level docs |
-| `website/1.2` | nested git root | Current website and website agent harness |
+| `website/` | parent repository | Production static website |
 
 Confirm the root before commits:
 
@@ -18,8 +18,8 @@ git rev-parse --show-toplevel
 | Area | Path | Current role |
 |---|---|---|
 | Website | `website/` | Production static website |
-| Website design sources | `website/BRAND_BRIEF.md`, `website/DESIGN.md`, `website/PRODUCT.md` | Website design and product contract |
-| Website harness | `website/` agent files, when present | Website agent workflow |
+| Website design sources | `website/` source files and assets | Website design and product contract |
+| Website harness | `.agents/`, `.codex/`, `.claude/`, `.opencode/` | Repository-wide agent workflow |
 | Firmware | `firmware/` | Pendant firmware |
 | Backend | `backend/` | AI backend |
 | Android app | `app/` | Companion app |

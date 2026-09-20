@@ -32,7 +32,7 @@ Start with **change discovery**: research an idea, grill it, and draft a spec an
 
 ## Website route
 
-For `website/1.2/`, read `website/1.2/AGENTS.md`, then `BRAND_BRIEF.md`, `DESIGN.md`, `PRODUCT.md`, `CONTEXT.md`, and relevant reference research before planning. The production site is static; do not add a framework or build step without an approved spec.
+For `website/`, inspect the active HTML, CSS, JavaScript, assets, and `.github/workflows/deploy-website.yml` before planning. The production site is static; do not add a framework or build step without an approved spec.
 
 ## Keep the harness small
 
