@@ -51,7 +51,7 @@ def check(path: Path) -> list[str]:
 
     prose = re.sub(r"\x60\x60\x60.*?\x60\x60\x60", "", text, flags=re.S)
     for sentence_no, sentence in enumerate(
-        re.split(r"(?<=[.!?])\\s+|\\n+", prose),
+        re.split(r"(?<=[.!?])\s+|\n+", prose),
         1,
     ):
         words = re.findall(r"\\b[\\w’'-]+\\b", sentence)
