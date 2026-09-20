@@ -8,7 +8,6 @@ Aura is an open-source, screenless, voice-first AI pendant. It combines:
 - `backend/`: FastAPI AI backend.
 - `app/`: Android companion app.
 - `hardware/`: printable case and hardware notes.
-- `website/`: production website.
 
 The current maintainer is solo. Optimize workflows for one strong maintainer assisted by coding agents.
 
@@ -16,14 +15,7 @@ The current maintainer is solo. Optimize workflows for one strong maintainer ass
 
 Read [REPO_MAP.md](REPO_MAP.md) before structural work.
 
-The production website is `website/`. Its active page contract is:
-
-- `index.html`
-- `manifesto.html`
-- `docs.html`
-- `404.html`
-
-Legacy website files do not define current behavior. Verify deploy config and actual files before relying on older docs.
+There is no production website in this repository. Product website and visual design are maintained externally in Figma and Framer.
 
 ## Documentation System
 
@@ -49,8 +41,6 @@ This workspace contains a nested git repo. Confirm the repository root before gi
 git rev-parse --show-toplevel
 ```
 
-Website work belongs in `website/`. Parent work belongs in the parent repository.
-
 Never run broad staging unless the task requires parent-level repository management.
 
 ## Agentic SDLC
@@ -67,26 +57,12 @@ Rules:
 - Record hard-to-reverse decisions as ADRs.
 - Update durable context when a stable project term or boundary changes.
 
-## Website Design Contract
-
-For website edits, read the local website guidance before editing.
-
-Website principles:
-
-- Apple-like product page discipline.
-- Photography first.
-- One accent color: Action Blue.
-- No hype or fake claims.
-- CSS literals belong in design tokens.
-- Keep pages static unless the maintainer changes the contract.
-
 ## Verification
 
 Prefer the smallest check that matches the change.
 
-- Website changes: inspect affected HTML, CSS, and assets. Use browser checks when visual behavior changes.
 - Harness changes: run the repository's documented harness check.
-- Deployment changes: verify `.github/workflows/deploy-website.yml`.
+- Deployment changes: verify the affected deployment configuration.
 - Markdown changes: run `python scripts/docs/check_markdown.py`.
 
 State missing automated coverage in the final report.
@@ -96,4 +72,3 @@ State missing automated coverage in the final report.
 Keep agent context compact. Move detail into the owning document and link to it.
 
 When a Markdown change affects another document's facts or links, update the affected source of truth in the same change.
-
