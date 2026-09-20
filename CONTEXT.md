@@ -18,7 +18,7 @@ Aura is an open-source, screenless, voice-first AI pendant. Worn around the neck
 
 ## Website Context
 
-The active website source is `website/1.2/website/`. The active page contract is:
+The active website source is `website/`. The active page contract is:
 
 - `index.html`
 - `manifesto.html`
