@@ -8,3 +8,4 @@
 | 2026-09-20 | `MARKDOWN_ENGINEERING.md` | L5 | Added context-budget and synchronization rules. | Structure should guide agents toward the smallest useful context. |
 
 | 2026-09-20 | `MARKDOWN_ENGINEERING.md` | L8 | Added a deterministic Markdown checker and wired it into agent workflow docs. | Policy needs reproducible verification. |
+| 2026-09-20 | `CONTEXT.md` / `REPO_MAP.md` / agent adapters | L8 | Removed stale `website/1.2` path references after verifying `website/` as the deployed source. | Documentation named a different website boundary than the deployment workflow. |
