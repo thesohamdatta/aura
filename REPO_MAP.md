@@ -17,9 +17,9 @@ git rev-parse --show-toplevel
 
 | Area | Path | Current role |
 |---|---|---|
-| Website | `website/1.2/website/` | Production static website |
-| Website design sources | `website/1.2/BRAND_BRIEF.md`, `website/1.2/DESIGN.md`, `website/1.2/PRODUCT.md` | Website design and product contract |
-| Website harness | `website/1.2/agent_harness.py`, `website/1.2/workflows/`, `website/1.2/prompts/` | Website agent workflow |
+| Website | `website/` | Production static website |
+| Website design sources | `website/BRAND_BRIEF.md`, `website/DESIGN.md`, `website/PRODUCT.md` | Website design and product contract |
+| Website harness | `website/` agent files, when present | Website agent workflow |
 | Firmware | `firmware/` | Pendant firmware |
 | Backend | `backend/` | AI backend |
 | Android app | `app/` | Companion app |
@@ -28,7 +28,7 @@ git rev-parse --show-toplevel
 
 ## Website Truth
 
-The live website source is `website/1.2/website/`.
+The live website source is `website/`.
 
 GitHub Pages deploys that directory through `.github/workflows/deploy-website.yml`.
 
