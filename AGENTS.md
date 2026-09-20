@@ -87,6 +87,7 @@ Prefer the smallest check that matches the change.
 - Website changes: inspect affected HTML, CSS, and assets. Use browser checks when visual behavior changes.
 - Harness changes: run the repository's documented harness check.
 - Deployment changes: verify `.github/workflows/deploy-website.yml`.
+- Markdown changes: run `python scripts/docs/check_markdown.py`.
 
 State missing automated coverage in the final report.
 
