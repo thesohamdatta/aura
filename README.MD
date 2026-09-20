@@ -9,7 +9,6 @@
 ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
 ```
 
-### SCREENLESS. VOICE-FIRST. PERSONAL MEMORY.
 
 [![License](https://img.shields.io/badge/LICENSE-MIT-171717?style=for-the-badge&labelColor=f7c600&color=171717)](LICENSE)
 [![Hardware](https://img.shields.io/badge/HARDWARE-OPEN-171717?style=for-the-badge&labelColor=f7c600&color=171717)](hardware/)
@@ -20,7 +19,7 @@
 
 **Aura is an open-source AI pendant you wear around your neck.**
 
-Voice in. Memory out. No screen.
+
 
 </div>
 
