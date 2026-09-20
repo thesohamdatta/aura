@@ -1,69 +1,59 @@
 <div align="center">
 
-<img src="Assets/hero/123456l.png" alt="Aura pendant worn in the real world" width="360" />
-
-<br/>
-
 # Aura
 
-Aura is an open-source pendant you wear around your neck.
-Voice in. Memory out. No screen.
+<img src="Assets/hero/aura-ascii-gold.png" alt="AURA" width="900" />
 
-<br/>
+<p>
+Open-source, screenless, voice-first AI pendant.
+<br />
+Voice in. Memory out. No screen.
+</p>
 
 </div>
 
-## What works
+## What it is
 
-| Layer | Where |
+Aura is a wearable AI pendant built around the XIAO ESP32-S3 Sense. It captures audio and images, sends them to the backend, and makes the resulting memory available through the companion app.
+
+## Repository
+
+| Area | Path |
 |---|---|
-| Pendant firmware (XIAO ESP32-S3 Sense) | [`firmware/`](firmware/) |
-| Backend (FastAPI, 4-layer AI) | [`backend/`](backend/) |
-| Android companion app | [`app/`](app/) |
-| Printable case | [`hardware/CASE.stl`](hardware/CASE.stl) |
+| Firmware | [`firmware/`](firmware/) |
+| Backend | [`backend/`](backend/) |
+| Companion app | [`app/`](app/) |
+| Hardware | [`hardware/`](hardware/) |
+| Website | [`website/`](website/) |
 
 ## Start here
 
-| You want to | Open |
+| Task | Read |
 |---|---|
 | Flash the pendant | [`firmware/readme.md`](firmware/readme.md) |
 | Run the backend | [`backend/README.md`](backend/README.md) |
-| Build the Android app | [`app/README.md`](app/README.md) |
-| Print the case | [`hardware/README.md`](hardware/README.md) |
+| Build the app | [`app/README.md`](app/README.md) |
+| Build the enclosure | [`hardware/README.md`](hardware/README.md) |
 
-## How the stack fits
+## Stack
 
-Pendant streams audio and frames over Wi-Fi. Backend turns them into searchable memory. The app is how you ask the memory a question.
+- **Hardware:** XIAO ESP32-S3 Sense, OV2640 camera, PDM microphone
+- **Firmware:** ESP32 firmware in `firmware/`
+- **Backend:** FastAPI with AI, memory, and retrieval components
+- **App:** Flutter Android companion
+- **Connectivity:** Wi-Fi and Bluetooth Low Energy
 
-[Read the full argument](website/manifesto.html).
+## Development
 
-## Hardware
+Read [`AGENTS.md`](AGENTS.md) before making repository-wide changes.
 
-Off-the-shelf parts. Printable case. No proprietary enclosure.
+Use [`REPO_MAP.md`](REPO_MAP.md) to find the canonical owner for a part of the repository.
 
-| Piece | Spec |
-|---|---|
-| MCU | XIAO ESP32-S3 Sense |
-| Mic | Digital PDM |
-| Camera | OV2640 |
-| Wireless | Wi-Fi 2.4GHz + BLE 5.0 |
-| Case | [`hardware/CASE.stl`](hardware/CASE.stl) |
+For agent workflow and verification, see [`docs/agentic-sdlc.md`](docs/agentic-sdlc.md).
 
-Total BOM: around \$50 USD. Component list and assembly notes live in [`hardware/README.md`](hardware/README.md).
+## License
 
-## Open source
-
-MIT licensed. Built by a four-person undergrad team in Pune.
-
-- [Contributing](CONTRIBUTING.md)
-- [Code of Conduct](CODE_OF_CONDUCT.md)
-- [Security](SECURITY.md)
-- [License](LICENSE)
+MIT. See [`LICENSE`](LICENSE).
 
 ---
-
-<div align="center">
-
-[Star on GitHub](https://github.com/thesohamdatta/aura) · [Report a vulnerability](SECURITY.md) · [MIT](LICENSE)
-
-</div>
+<sub>Built in Pune, India.</sub>
