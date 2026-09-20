@@ -113,3 +113,11 @@ These are safe to include in the first cleanup PR because they are either stale 
 - `backend/utils/app_integrations.py`, `backend/models/app.py`, `backend/routers/firmware.py`: contain live code that points at the upstream repository. Rework after tracing runtime behavior.
 - Android package identity `com.friend.ios` and Friend/Omi app-store references: clearly inherited branding, but changing them is an application migration, not a safe cleanup deletion.
 - Website Omi copy and images: defer until Aura-native replacements are available, as requested.
+
+## First cleanup PR contents
+
+The first PR intentionally removes only two high-confidence unused surfaces:
+- `scratch/framer_extracted_content.md`
+- `backend/.github/workflows/push_replicate.yml`
+
+Everything else remains untouched until a separate consumer/deployment migration is completed.
