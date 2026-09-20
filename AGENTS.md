@@ -95,3 +95,4 @@ State missing automated coverage in the final report.
 Keep agent context compact. Move detail into the owning document and link to it.
 
 When a Markdown change affects another document's facts or links, update the affected source of truth in the same change.
+
