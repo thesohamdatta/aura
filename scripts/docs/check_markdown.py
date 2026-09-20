@@ -54,7 +54,7 @@ def check(path: Path) -> list[str]:
         re.split(r"(?<=[.!?])\s+|\n+", prose),
         1,
     ):
-        words = re.findall(r"\\b[\\w’'-]+\\b", sentence)
+        words = re.findall(r"\b[\w’'-]+\b", sentence)
         if len(words) > 25:
             errors.append(
                 f"sentence > 25 words near sentence {sentence_no} ({len(words)} words)"
