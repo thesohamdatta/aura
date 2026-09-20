@@ -2,13 +2,14 @@
 
 @AGENTS.md
 
-This file is intentionally a small adapter. `AGENTS.md` is the shared project instruction source for every coding agent; do not duplicate its rules here.
+`AGENTS.md` is the shared project instruction source. Keep Claude-specific additions limited to adapter behavior.
 
 ## Website work
 
-For work in `website/1.2/`, read `website/1.2/AGENTS.md` before editing.
-Follow `docs/WORKFLOW.md` for any change intended to ship.
+For work in `website/1.2/`, read its local `AGENTS.md` before editing.
 
-## Working rule
+Follow [docs/WORKFLOW.md](docs/WORKFLOW.md) for changes intended to ship.
 
-Use the smallest safe change, verify it with evidence, and leave deployment for explicit human approval.
+## Markdown work
+
+Follow [MARKDOWN_ENGINEERING.md](MARKDOWN_ENGINEERING.md).
