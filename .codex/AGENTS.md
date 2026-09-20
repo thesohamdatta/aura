@@ -19,9 +19,4 @@ The generated baseline enables GitHub, Context7, Exa, Memory, Playwright, and Se
 - Reviewer: correctness, security, and regression review
 - Docs researcher: API and release-note verification
 
-## Workflow Files
-
-- `.claude/commands/design-system-update.md`
-- `.claude/commands/documentation-update.md`
-
-Use these workflow files as reusable task scaffolds when the detected repository workflows recur.
+No website-specific workflow files are maintained in this repository.
