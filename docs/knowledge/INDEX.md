@@ -4,6 +4,8 @@ Use this as a compact navigation layer for durable agent-facing knowledge.
 
 ## Start here
 
+- [Public README plan](../work/readme-redesign-plan.md): design rationale and acceptance criteria
+
 - [Agent operating rules](../../AGENTS.md)
 - [Repository map](../../REPO_MAP.md)
 - [Project context](../../CONTEXT.md)
