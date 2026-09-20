@@ -72,7 +72,7 @@ Component details and assembly notes live in [`hardware/README.md`](hardware/REA
 
 ## OPEN SOURCE
 
-Aura is MIT licensed and built by a four-person undergraduate team in Pune.
+Aura is MIT licensed .
 
 - [Contributing](CONTRIBUTING.md)
 - [Code of Conduct](CODE_OF_CONDUCT.md)
