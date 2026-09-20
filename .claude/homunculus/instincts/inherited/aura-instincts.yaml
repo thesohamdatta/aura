@@ -129,9 +129,6 @@ Place tests in the tests/ or __tests__/ directory, mirroring src structure
 
 ## Action
 
-Follow the design-system-update workflow:
-1. Edit or add CSS utility classes in website/css/global.css (or related CSS files).
-2. Update HTML files (e.g., index.html, docs.html) to use new or migrated classes.
 3. Optionally update or reference verification/linter rules in documentation (e.g., AGENT_RULES.md, DEVELOPMENT_GUIDE.md).
 4. Verify changes using local or documented linter/verification scripts.
 
@@ -139,21 +136,17 @@ Follow the design-system-update workflow:
 
 - Workflow detected from commit patterns
 - Frequency: ~2x per month
-- Files: website/css/global.css, website/index.html, website/docs.html
 
 # Aura Workflow Documentation Update
 
 ## Action
 
-Follow the documentation-update workflow:
-1. Edit relevant documentation files (e.g., website/docs.html, AGENT_RULES.md, DEVELOPMENT_GUIDE.md).
 2. Commit with a message referencing the section or purpose of the doc change.
 
 ## Evidence
 
 - Workflow detected from commit patterns
 - Frequency: ~2x per month
-- Files: website/docs.html, website/docs/specs/AGENT_RULES.md, website/docs/specs/DEVELOPMENT_GUIDE.md
 
 ---
 id: aura-instinct-file-naming
@@ -313,22 +306,14 @@ Format the commit message using Conventional Commits with a prefix (fix or feat)
 
 ## Action
 
-Edit or add CSS utility classes in website/css/global.css, update HTML files to use new/migrated classes, optionally update related documentation, and verify changes using linter/verification scripts
-
 ## Evidence
 
-- Workflow: design-system-update
-- Files: website/css/global.css, website/index.html, website/docs.html, website/docs/specs/AGENT_RULES.md, website/docs/specs/DEVELOPMENT_GUIDE.md
 - Commit: fix(design-system): migrate 3 inline styles to named utility classes (closes #49)
 
 # Aura Instinct Documentation Update
 
 ## Action
 
-Edit relevant documentation files (website/docs.html, AGENT_RULES.md, DEVELOPMENT_GUIDE.md) and commit with a message referencing the section or purpose of the doc change
-
 ## Evidence
 
-- Workflow: documentation-update
-- Files: website/docs.html, website/docs/specs/AGENT_RULES.md, website/docs/specs/DEVELOPMENT_GUIDE.md
 - Commit: fix(docs): resolve heading hierarchy skips in troubleshooting section
