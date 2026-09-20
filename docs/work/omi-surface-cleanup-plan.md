@@ -98,3 +98,18 @@ Do not mix:
 ## Expected follow-up
 
 After this cleanup PR, run a second pass focused on **Rework** items in the Android, website, and backend layers. Rework should convert Omi-shaped interfaces into Aura-native ones rather than adding more compatibility code.
+
+## Confirmed high-confidence cleanup candidates
+
+These are safe to include in the first cleanup PR because they are either stale extraction/scratch material or an unused legacy CI surface, and current repository search found no Aura consumer for them:
+
+- `scratch/framer_extracted_content.md`: raw extracted website research/scratch material; its own generator script is the only repository reference.
+- `backend/.github/workflows/push_replicate.yml`: legacy deployment workflow that publishes a `basedhardware/speechbrain-vad` image; no current repository references to this workflow were found.
+
+## Deferred, explicitly not deleted
+
+- `website-new/`: contains 128 files and looks like a legacy duplicate site, but deletion needs a dedicated reference/deployment check because it is a large website surface.
+- `backend/.env.template`: contains inherited Omi-named environment variables and a development secret-looking value. Rework, not deletion, because the backend may consume environment names today.
+- `backend/utils/app_integrations.py`, `backend/models/app.py`, `backend/routers/firmware.py`: contain live code that points at the upstream repository. Rework after tracing runtime behavior.
+- Android package identity `com.friend.ios` and Friend/Omi app-store references: clearly inherited branding, but changing them is an application migration, not a safe cleanup deletion.
+- Website Omi copy and images: defer until Aura-native replacements are available, as requested.
