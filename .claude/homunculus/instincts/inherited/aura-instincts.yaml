@@ -125,29 +125,6 @@ Place tests in the tests/ or __tests__/ directory, mirroring src structure
 - Separate test directory pattern detected
 - Tests live in dedicated test folders
 
-# Aura Workflow Design System Update
-
-## Action
-
-3. Optionally update or reference verification/linter rules in documentation (e.g., AGENT_RULES.md, DEVELOPMENT_GUIDE.md).
-4. Verify changes using local or documented linter/verification scripts.
-
-## Evidence
-
-- Workflow detected from commit patterns
-- Frequency: ~2x per month
-
-# Aura Workflow Documentation Update
-
-## Action
-
-2. Commit with a message referencing the section or purpose of the doc change.
-
-## Evidence
-
-- Workflow detected from commit patterns
-- Frequency: ~2x per month
-
 ---
 id: aura-instinct-file-naming
 trigger: "When creating a new file in the codebase"
@@ -301,19 +278,3 @@ Format the commit message using Conventional Commits with a prefix (fix or feat)
 - Pattern in commits.type: conventional
 - Pattern in commits.prefixes: [fix, feat]
 - Seen in commit: fix(docs): resolve heading hierarchy skips in troubleshooting section
-
-# Aura Instinct Design System Update
-
-## Action
-
-## Evidence
-
-- Commit: fix(design-system): migrate 3 inline styles to named utility classes (closes #49)
-
-# Aura Instinct Documentation Update
-
-## Action
-
-## Evidence
-
-- Commit: fix(docs): resolve heading hierarchy skips in troubleshooting section
