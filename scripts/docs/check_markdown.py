@@ -24,7 +24,7 @@ def markdown_files() -> list[Path]:
     return [
         Path(line) for line in out.splitlines()
         if not any(part in SKIP for part in Path(line).parts)
-        and "charts/deepgram-self-hosted" not in Path(line).as_posix()
+        and not Path(line).as_posix().startswith("backend/charts/deepgram-self-hosted/")
     ]
 
 
