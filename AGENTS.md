@@ -8,7 +8,7 @@ Aura is an open-source, screenless, voice-first AI pendant. It combines:
 - `backend/`: FastAPI AI backend.
 - `app/`: Android companion app.
 - `hardware/`: printable case and hardware notes.
-- `website/1.2/website/`: production website.
+- `website/`: production website.
 
 The current maintainer is solo. Optimize workflows for one strong maintainer assisted by coding agents.
 
@@ -16,7 +16,7 @@ The current maintainer is solo. Optimize workflows for one strong maintainer ass
 
 Read [REPO_MAP.md](REPO_MAP.md) before structural work.
 
-The production website is `website/1.2/website/`. Its active page contract is:
+The production website is `website/`. Its active page contract is:
 
 - `index.html`
 - `manifesto.html`
@@ -49,7 +49,7 @@ This workspace contains a nested git repo. Confirm the repository root before gi
 git rev-parse --show-toplevel
 ```
 
-Website work belongs in `website/1.2`. Parent work belongs in the parent repository.
+Website work belongs in `website/`. Parent work belongs in the parent repository.
 
 Never run broad staging unless the task requires parent-level repository management.
 
