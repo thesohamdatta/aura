@@ -26,3 +26,7 @@ Aura is an open-source, screenless, voice-first AI pendant. Worn around the neck
 See [REPO_MAP.md](REPO_MAP.md) for canonical paths and [docs/markdown-engineering.md](docs/markdown-engineering.md) for the context architecture.
 
 Stable architecture decisions belong in [docs/adr/](docs/adr/), not here.
+
+## Domain Language Rules
+
+Domain terms are canonical vocabulary, not implementation labels. Before introducing a new project-specific term, check existing definitions and the code that uses the concept. When terminology is resolved, update this glossary immediately; implementation details belong in skills, workflow docs, specs, or ADRs.
