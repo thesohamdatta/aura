@@ -1,14 +1,6 @@
 <div align="center">
 
-```text
- █████╗ ██╗   ██╗██████╗  █████╗
-██╔══██╗██║   ██║██╔══██╗██╔══██╗
-███████║██║   ██║██████╔╝███████║
-██╔══██║██║   ██║██╔══██╗██╔══██║
-██║  ██║╚██████╔╝██║  ██║██║  ██║
-╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
-```
-
+<img src="Assets/hero/aura-ascii-gold.png" alt="Aura" width="100%"/>
 
 [![License](https://img.shields.io/badge/LICENSE-MIT-171717?style=for-the-badge&labelColor=f7c600&color=171717)](LICENSE)
 [![Hardware](https://img.shields.io/badge/HARDWARE-OPEN-171717?style=for-the-badge&labelColor=f7c600&color=171717)](hardware/)
@@ -18,8 +10,6 @@
 <br/>
 
 **Aura is an open-source AI pendant you wear around your neck.**
-
-
 
 </div>
 
