@@ -38,6 +38,7 @@ Before work:
 5. Read the area README or design contract.
 6. Inspect actual files before planning.
 7. Read [MARKDOWN_ENGINEERING.md](../MARKDOWN_ENGINEERING.md) when Markdown changes.
+8. Run `python scripts/docs/check_markdown.py` after Markdown edits.
 
 Ask the maintainer about decisions. Do not ask about facts that can be found in the repository.
 
