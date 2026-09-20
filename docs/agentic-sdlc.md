@@ -60,7 +60,7 @@ Use [MARKDOWN_ENGINEERING.md](../MARKDOWN_ENGINEERING.md) for Markdown-specific 
 
 Use the smallest durable document:
 
-- [CONTEXT.md](../CONTEXT.md): stable terms and compact project context.
+- [CONTEXT.md](../CONTEXT.md): stable terms and compact context.
 - [REPO_MAP.md](../REPO_MAP.md): canonical paths and navigation.
 - [docs/adr/](adr/): hard-to-reverse decisions.
 - `.agents/skills/*/SKILL.md`: repeatable procedures agents should load on demand.
@@ -77,6 +77,5 @@ Create an ADR only when all are true:
 
 - Never commit secrets.
 - Never make broad cleanup while solving a narrow task.
-- Never change the active website page contract without maintainer approval.
-- Never mix parent and nested website repository commits.
-- Never trust stale docs over deploy config and actual file structure.
+- Never mix unrelated repository scopes in one change.
+- Never trust stale docs over actual file structure.
