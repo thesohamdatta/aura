@@ -85,22 +85,24 @@ Do not invent a missing file to satisfy a link. Fix or remove the link.
 
 ## Quality Gate
 
-- [ ] Frontmatter has a useful `description` for governed instruction or skill files.
-- [ ] One primary responsibility per file.
-- [ ] No duplicated durable paragraphs.
-- [ ] Acronyms are defined on first use.
-- [ ] Banned filler terms are absent from changed text.
-- [ ] Headings do not exceed three levels.
-- [ ] Sentences stay within 25 words.
-- [ ] Sentence openings name their subject.
-- [ ] Code blocks have language tags or are fenced data blocks.
-- [ ] Code examples explain required substitutions.
-- [ ] Examples stay consistent within each document.
-- [ ] Callouts stay rare.
-- [ ] Long files use a table of contents when navigation needs it.
-- [ ] Cross-file links resolve.
-- [ ] Affected source-of-truth files are synchronized.
-- [ ] LEARNINGS.md records durable lessons.
+Run:
+
+```bash
+python scripts/docs/check_markdown.py
+```
+
+The checker covers heading depth, sentence length, banned terms, sentence openers, frontmatter, and internal links.
+
+Manual review still covers:
+
+- One primary responsibility per file.
+- No duplicated durable knowledge.
+- Correct source-of-truth ownership.
+- Acronym definitions.
+- Example consistency.
+- Appropriate callout density.
+
+A Markdown change passes only when the checker passes and manual ownership review finds no blocking issue.
 
 ## Context Budget
 
