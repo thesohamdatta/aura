@@ -35,7 +35,7 @@ Look up facts in the repo. Ask the maintainer for decisions.
 
 ## Website Lock
 
-The production website is `website/1.2/website/`.
+The production website is `website/`.
 
 Current page contract:
 
