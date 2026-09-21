@@ -108,7 +108,6 @@ These are safe to include in the first cleanup PR because they are either stale 
 
 ## Deferred, explicitly not deleted
 
-- `website-new/`: contains 128 files and looks like a legacy duplicate site, but deletion needs a dedicated reference/deployment check because it is a large website surface.
 - `backend/.env.template`: contains inherited Omi-named environment variables and a development secret-looking value. Rework, not deletion, because the backend may consume environment names today.
 - `backend/utils/app_integrations.py`, `backend/models/app.py`, `backend/routers/firmware.py`: contain live code that points at the upstream repository. Rework after tracing runtime behavior.
 - Android package identity `com.friend.ios` and Friend/Omi app-store references: clearly inherited branding, but changing them is an application migration, not a safe cleanup deletion.
