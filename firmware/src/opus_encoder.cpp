@@ -9,7 +9,9 @@
 static OpusEncoder *encoder = nullptr;
 static opus_encoded_handler encoded_callback = nullptr;
 
-// Ring buffer for PCM data - allocated in PSRAM
+// Ring buffer for PCM data - allocated in PSRAM.
+// Capture and encode currently run from loop_app(), so the indexes are not
+// concurrently modified. Keep this assumption explicit if tasking changes.
 static int16_t *pcm_ring_buffer = nullptr;
 static volatile size_t ring_write_pos = 0;
 static volatile size_t ring_read_pos = 0;
@@ -100,10 +102,14 @@ int opus_receive_pcm(int16_t *data, size_t samples)
     if (pcm_ring_buffer == nullptr) {
         return -1;
     }
+    if (data == nullptr && samples > 0) {
+        return -1;
+    }
+
     for (size_t i = 0; i < samples; i++) {
         size_t next_write = (ring_write_pos + 1) % AUDIO_RING_BUFFER_SAMPLES;
         if (next_write == ring_read_pos) {
-            // Buffer full, drop oldest sample
+            // Buffer full, drop oldest sample to keep the newest audio.
             ring_read_pos = (ring_read_pos + 1) % AUDIO_RING_BUFFER_SAMPLES;
         }
         pcm_ring_buffer[ring_write_pos] = data[i];
@@ -127,8 +133,9 @@ int opus_encode_frame(int16_t *pcm_data, size_t samples)
         return -1;
     }
 
-    if (samples != OPUS_FRAME_SAMPLES) {
-        Serial.printf("Invalid frame size: %d (expected %d)\n", samples, OPUS_FRAME_SAMPLES);
+    if (pcm_data == nullptr || samples != OPUS_FRAME_SAMPLES) {
+        Serial.printf("Invalid PCM frame (samples=%u, expected=%u)\n",
+                      (unsigned)samples, (unsigned)OPUS_FRAME_SAMPLES);
         return -1;
     }
 
@@ -149,8 +156,13 @@ void opus_process()
         return;
     }
 
-    // Check if we have enough samples for a frame
-    while (ring_buffer_available() >= OPUS_FRAME_SAMPLES) {
+    // Keep processing bounded per loop so BLE, camera, and power tasks get time.
+    // At 16 kHz, 25 frames = 500 ms of audio (the PCM ring buffer capacity).
+    const size_t max_frames_per_call = AUDIO_RING_BUFFER_SAMPLES / OPUS_FRAME_SAMPLES;
+    size_t frames_processed = 0;
+
+    while (ring_buffer_available() >= OPUS_FRAME_SAMPLES &&
+           frames_processed < max_frames_per_call) {
         // Read samples from ring buffer
         for (size_t i = 0; i < OPUS_FRAME_SAMPLES; i++) {
             opus_input_buffer[i] = pcm_ring_buffer[ring_read_pos];
@@ -163,12 +175,11 @@ void opus_process()
         if (encoded_bytes > 0 && encoded_callback != nullptr) {
             encoded_callback(opus_output_buffer, encoded_bytes);
         }
+        frames_processed++;
     }
 }
 
 uint8_t opus_get_codec_id()
 {
-    // Codec ID 20 = Opus (matching Aura protocol)
-    // Actually Aura uses CODEC_ID 21 for Opus
     return AUDIO_CODEC_ID;
 }
