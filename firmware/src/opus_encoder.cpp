@@ -156,9 +156,11 @@ void opus_process()
         return;
     }
 
-    // Keep processing bounded per loop so BLE, camera, and power tasks get time.
-    // At 16 kHz, 25 frames = 500 ms of audio (the PCM ring buffer capacity).
-    const size_t max_frames_per_call = AUDIO_RING_BUFFER_SAMPLES / OPUS_FRAME_SAMPLES;
+    // Leave time for BLE, camera, button, and power work in loop_app().
+    // Eight 20 ms frames cap encoding work at 160 ms of audio per call.
+    // This is above the 100 ms microphone read buffer, allowing steady-state
+    // processing to keep up while limiting recovery bursts after a delay.
+    const size_t max_frames_per_call = 8;
     size_t frames_processed = 0;
 
     while (ring_buffer_available() >= OPUS_FRAME_SAMPLES &&
